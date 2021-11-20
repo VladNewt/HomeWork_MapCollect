@@ -44,14 +44,19 @@ public class Main {
 
 
         //Коллекция уникальных ФИО и номеров билетов
-        TreeMap<Students, String> students = new TreeMap<>();
+        TreeMap<Students, Integer> students = new TreeMap<>();
+
+
 
         for (int i = 0; i < 10; i++) {
             students.put(new Students(sournameArr[rnd.nextInt(10)],nameArr[rnd.nextInt(10)],secondnameArr[rnd.nextInt(10)]),
-                    ticket.floor(rnd.nextInt(10)).toString());
+                    ticket.floor(rnd.nextInt(10)));
         }
 
-        System.out.println(students.toString());
+        System.out.println(students);
+
+
+
 
     }
 }
