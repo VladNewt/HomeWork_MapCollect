@@ -1,10 +1,6 @@
 package Zadaniye_1;
 
-import java.util.Arrays;
-import java.util.Random;
-import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.function.BiConsumer;
+import java.util.*;
 
 public class Main {
 
@@ -12,51 +8,46 @@ public class Main {
 
         Random rnd = new Random();
 
-        final String[] sournameArr = {"Sourname10","Sourname11","Sourname12","Sourname13","Sourname14","Sourname15","Sourname16",
-        "sourname17", "sourname18", "sourname19"};
+        final String[] sournameArr = {"Jones","Garcia","Wright","Hughes","Collins","Bell","Rivera",
+        "Ramirez", "Cook", "Perry"};
 
-        final String[] nameArr =  {"name10","name11","name12","name13","name14","name15","name16",
-                "name17", "name18", "name19"};
+        final String[] nameArr =  {"Edward","Albert","Carl","Derek","Felix","Caroline","Angelina",
+                "Barbara", "Judy", "Diana"};
 
-        final String[] secondnameArr = {"secondname10","secondname12","secondname13","secondname11","secondname14","secondname15","secondname16",
-                "secondname17", "secondname18", "secondname19"};
-
-
-
-        TreeSet<String> sourname = new TreeSet<String>(Arrays.asList(sournameArr));
-        TreeSet<String> name = new TreeSet<String>(Arrays.asList(nameArr));
-        TreeSet<String> secondname = new TreeSet<String>(Arrays.asList(secondnameArr));
+        final String[] secondnameArr = {"Travis","Valentine","Walter","Scott","Miles","Kurt","John",
+                "Hubert", "Harry", "Grant"};
 
 
-
-        sourname.forEach(System.out::println);
-        name.forEach(System.out::println);
-        secondname.forEach(System.out::println);
+        HashSet<String> sourname = new HashSet<String>(Arrays.asList(sournameArr));
+        HashSet<String> name = new HashSet<String>(Arrays.asList(nameArr));
+        HashSet<String> secondname = new HashSet<String>(Arrays.asList(secondnameArr));
 
 
 
         //Коллекция номеров билетов
-        TreeSet<Integer> ticket = new TreeSet<>();
-
-        for (int i = 1; i <= 10; i++) {
-            ticket.add(i);
+       LinkedHashSet<Integer> ticket = new LinkedHashSet<Integer>();
+        while (ticket.size()<10) {
+            ticket.add(rnd.nextInt(10)+1);
         }
+
+        //Преобразование в List
+        ArrayList<Integer> ticketArr = new ArrayList<>();
+        ticket.forEach(value->ticketArr.add(value));
+
 
 
         //Коллекция уникальных ФИО и номеров билетов
         TreeMap<Students, Integer> students = new TreeMap<>();
 
-
-
         for (int i = 0; i < 10; i++) {
             students.put(new Students(sournameArr[rnd.nextInt(10)],nameArr[rnd.nextInt(10)],secondnameArr[rnd.nextInt(10)]),
-                    ticket.floor(rnd.nextInt(10)));
+                    ticketArr.get(i));
         }
 
-        System.out.println(students);
 
-
-
+        for (Map.Entry<Students,Integer> item : students.entrySet()) {
+            System.out.println(item.getKey()+"="+item.getValue());
+        }
 
     }
 }
